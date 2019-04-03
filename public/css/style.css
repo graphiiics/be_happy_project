@@ -1,0 +1,84 @@
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    text-align: center;
+  }
+  
+.menu  li {
+    display: inline-block;
+  }
+  
+.menu  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+.menu  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+.menu  .active {
+    background-color: #4CAF50;
+  }
+
+.box{
+  background:#f9f9f9;
+  border:1px solid #ddd;
+  border-radius:3px;
+  padding:12px
+}
+
+.title{
+  text-align:center;
+  margin-bottom:48px
+}
+
+/* TABLE RECORDS */
+.records th{
+  text-align: center;
+}
+.records .date{
+  width: 20%;
+}
+
+.records .emoji{
+  width: 10%;
+}
+
+.records .comments{
+  width: 70%;
+}
+/* TABLE RECORDS*/
+
+/*RADIO BUTTON IMAGE*/
+/* HIDE RADIO */
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + span {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + span {
+  outline: 2px solid #f00;
+}
+
+.emoji span {
+  font-size:6rem;
+  width:100%;
+  text-align:center;
+}
+
+/*RADIO BUTTON IMAGE*/

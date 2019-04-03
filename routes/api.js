@@ -28,8 +28,23 @@ router.post('/feel', (req,res) => {
 
 	FeelController.post(newFeel)
 	.then(data => {
+		res.redirect('/records')
+	})
+	.catch(err => {
 		res.json({
-			confirmation: 'success',
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+})
+
+router.get('/march', (req, res) => {
+	//const filters = req.query
+
+	FeelController.getByMonth()
+	.then(data => {
+		res.json({
+			confirmation: 'sucess',
 			data: data
 		})
 	})

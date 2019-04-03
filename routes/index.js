@@ -4,33 +4,107 @@ const vertex = require('vertex360')({site_id: process.env.TURBO_APP_ID})
 const router = vertex.router()
 
 const emojis = require('emojis')
+const FeelController = require('../controllers/FeelController')
 
-/*  This is the home route. It renders the index.mustache page from the views directory.
-	Data is rendered using the Mustache templating engine. For more
-	information, view here: https://mustache.github.io/#demo */
+
 router.get('/', (req, res) => {
-	let heart = emojis.unicode(':heart:')
-	let smile = emojis.html(':smile:')
-	res.render('index', {text: 'This is me' + heart})
-})
-
-/*  This route render json data */
-router.get('/json', (req, res) => {
-	res.json({
-		confirmation: 'success',
-		app: process.env.TURBO_APP_ID,
-		data: 'this is a sample json route.'
+	let smile = emojis.unicode(':smiley:')
+	console.log(smile);
+	Promise.all(FeelController.getAllData())
+	.then(data => {
+		console.log(data);
+		
+		res.render('index', {
+			emoji: smile,
+			smiley: data[0].length,
+			neutal: data[1].length,
+			bad : data[2].length
+		})
 	})
 })
 
-/*  This route sends text back as plain text. */
-router.get('/send', (req, res) => {
-	res.send('This is the Send Route')
+router.get('/charts', (req, res) => {
+	FeelController.getCharts()
+	.then(data => {
+		console.log("----charts-----",data)
+		res.render('charts', {
+			sucessful: true,
+			data: data
+		})
+	})
+	.catch(err => {
+		res.render('charts', {
+			sucessful: false,
+			data: []
+		})
+	})
 })
 
-/*  This route redirects requests to Turbo360. */
-router.get('/redirect', (req, res) => {
-	res.redirect('https://www.turbo360.co/landing')
+router.get('/records', (req, res) => {
+	FeelController.get()
+	.then(data => {
+		
+		
+		console.log(data)
+		res.render('records', {
+			sucessful: true,
+			data: data
+		})
+	})
+	.catch(err => {
+		res.render('records', {
+			sucessful: false,
+			data: []
+		})
+	})
+})
+
+router.get('/records/:month', (req, res) => {
+	var month = req.params.month
+	//res.json({month: month})
+	FeelController.getRecordsByMonth(month)
+	.then(data => {
+		console.log(data)
+		res.render('records', {
+			sucessful: true,
+			data: data
+		})
+	})
+	.catch(err => {
+		res.render('records', {
+			sucessful: false,
+			data: []
+		})
+	})
+})
+
+router.get('/charts/:month', (req, res) => {
+	var month = req.params.month
+	//res.json({month: month})
+	FeelController.getChartsByMonth(month)
+	.then(data => {
+		console.log(data)
+		res.render('charts', {
+			sucessful: true,
+			data: data
+		})
+	})
+	.catch(err => {
+		res.render('charts', {
+			sucessful: false,
+			data: []
+		})
+	})
+})
+
+router.get('/new-feel', (req, res) => {
+	let smiley = emojis.unicode(':smiley:')
+	let neutral = emojis.unicode(':neutral_face:')
+	let  disappointed = emojis.unicode(':disappointed:')
+	res.render('new_feel', {
+		sucessful: true,
+		smiley: smiley
+	})
 })
 
 
