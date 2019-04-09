@@ -8,17 +8,18 @@ const FeelController = require('../controllers/FeelController')
 
 
 router.get('/', (req, res) => {
-	let smile = emojis.unicode(':smiley:')
-	console.log(smile);
-	Promise.all(FeelController.getAllData())
+	FeelController.getCharts()
 	.then(data => {
-		console.log(data);
-		
-		res.render('index', {
-			emoji: smile,
-			smiley: data[0].length,
-			neutal: data[1].length,
-			bad : data[2].length
+		console.log("----charts-----",data)
+		res.render('charts', {
+			sucessful: true,
+			data: data
+		})
+	})
+	.catch(err => {
+		res.render('charts', {
+			sucessful: false,
+			data: []
 		})
 	})
 })
@@ -98,12 +99,9 @@ router.get('/charts/:month', (req, res) => {
 })
 
 router.get('/new-feel', (req, res) => {
-	let smiley = emojis.unicode(':smiley:')
-	let neutral = emojis.unicode(':neutral_face:')
-	let  disappointed = emojis.unicode(':disappointed:')
 	res.render('new_feel', {
 		sucessful: true,
-		smiley: smiley
+		data: { display: "none" }
 	})
 })
 

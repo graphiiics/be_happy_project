@@ -15,6 +15,7 @@ const monthsData = [
     ['december', 12]
 ]
 const monthsMap = new Map(monthsData)
+const moment = require('moment')
 
 module.exports = {
     get: (params) => {
@@ -102,47 +103,36 @@ module.exports = {
     },
 
     post: (params) => {
+        const today = moment().startOf('day')
         return new Promise((resolve, reject) => {
-            Feel.create(params)
+            Feel.findOne({
+                date: {
+                  $gte: today.toDate(),
+                  $lte: moment(today).endOf('day').toDate()
+                }
+              })
             .then(data =>{
-                resolve(data)
+                if(!data){
+                    Feel.create(params)
+                    .then(data =>{
+                        resolve(data)
+                    })
+                    .catch(err => {
+                        reject(err)
+                    })
+                }else{
+                  resolve({
+                      message: "¡You ready registered your mood today!",
+                      display: "block",
+                      exists: true 
+                  })  
+                }
             })
             .catch(err => {
                 reject(err)
             })
         })
     },
-
-    getAllData: () => {
-        let smileyFeelings = new Promise((resolve, reject) => {
-            Feel.find({ emoji: ':smiley:'})
-            .then(data => {
-                resolve(data)
-            })
-            .catch(err => {
-                reject(err)
-            })
-        })
-        let neutralFeelings = new Promise((resolve, reject) => {
-            Feel.find({ emoji: ':neutral_face:'})
-            .then(data => {
-                resolve(data)
-            })
-            .catch(err => {
-                reject(err)
-            })
-        })
-        let disappointedFeelings = new Promise((resolve, reject) => {
-            Feel.find({ emoji: ':disappointed:'})
-            .then(data => {
-                resolve(data)
-            })
-            .catch(err => {
-                reject(err)
-            })
-        })
-        return [smileyFeelings, neutralFeelings, disappointedFeelings];
-    }, 
 
     getRecordsByMonth: (params) => {
         return new Promise((resolve, reject) => {

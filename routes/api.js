@@ -28,7 +28,16 @@ router.post('/feel', (req,res) => {
 
 	FeelController.post(newFeel)
 	.then(data => {
-		res.redirect('/records')
+		/*res.json({
+			confirmation: 'sucess',
+			data: data
+		})*/
+		if(data.exists){
+			res.render('new_feel', { data: data })
+		}else{
+			res.redirect('/records')
+		}
+		
 	})
 	.catch(err => {
 		res.json({

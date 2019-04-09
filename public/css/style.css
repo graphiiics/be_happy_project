@@ -1,9 +1,19 @@
+@font-face {
+  font-family: 'dk_lemon_yellow_sunregular';
+  src: url('../fonts/lemon_yellow_sun-webfont.woff2') format('woff2'),
+       url('../fonts/lemon_yellow_sun-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
 .menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #249DAF;
     text-align: center;
   }
   
@@ -13,23 +23,22 @@
   
 .menu  li a {
     display: block;
-    color: white;
+    color: #FAFF0A;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: 'dk_lemon_yellow_sunregular';
+    font-size: 3rem;
   }
   
 .menu  li a:hover:not(.active) {
-    background-color: #111;
+    background-color: #E5740B;
   }
   
-.menu  .active {
-    background-color: #4CAF50;
-  }
 
 .box{
   background:#f9f9f9;
-  border:1px solid #ddd;
+  border:1px solid #2CBFD6;
   border-radius:3px;
   padding:12px
 }
@@ -72,7 +81,9 @@
 
 /* CHECKED STYLES */
 [type=radio]:checked + span {
-  outline: 2px solid #f00;
+  border: 3px solid #E5740B;
+  border-radius: 50%;
+  padding-bottom: 7px;
 }
 
 .emoji span {
@@ -82,3 +93,77 @@
 }
 
 /*RADIO BUTTON IMAGE*/
+
+h1{
+  font-family: 'dk_lemon_yellow_sunregular';
+  font-size: 5rem;
+  color: #E5740B;
+}
+
+nav ul li a{
+  font-family: 'dk_lemon_yellow_sunregular';
+  font-size: 2rem;
+  color: #E5740B;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+nav ul li:hover:not(.active){
+  background-color: #FAFF0A;
+}
+
+nav ul li a:hover:not(.active){
+  color: #249DAF;
+  text-decoration: none;
+  font-size: 3rem;
+}
+
+.records th{
+  color: #249DAF;
+  font-size: 2rem;
+  font-family: 'dk_lemon_yellow_sunregular';
+}
+
+.records {
+  font-family: 'Lato', sans-serif;
+}
+
+.records tbody .emoji{
+  font-size: 2rem;
+}
+
+.records tbody .comment{
+  text-align: justify;
+}
+.box form textarea{
+  background:#f9f9f9;
+  border:1px solid #2CBFD6;
+  border-radius:3px;
+  padding:12px;
+
+}
+
+.box form{
+  font-family: 'Lato', sans-serif;
+}
+
+.box form label{
+  font-family: 'dk_lemon_yellow_sunregular';
+  font-size: 2rem;
+  color: #E5740B;
+}
+
+.box form .sent{
+  font-family: 'dk_lemon_yellow_sunregular';
+  font-size: 2rem;
+}
+
+#alert_feel{
+  background-color: #e6e78e;
+    border-color: #D2D534;
+    color: #6E7005;
+    font-family: 'Lato', sans-serif;
+}

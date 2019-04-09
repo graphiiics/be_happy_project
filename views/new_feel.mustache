@@ -9,7 +9,11 @@
 		<div class="col-md-6 col-md-offset-3" style="text-align:center;margin-bottom:48px">
 			<h1>HOW DID YOU FEEL TODAY?</h1>
 			<hr />
-			<div style="background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
+			<div id="alert_feel" style="display:{{data.display}}" class="alert alert-danger" role="alert">
+				{{data.message}}
+			</div>
+			{{data.visibility}}
+			<div class="box">
 				<form action="/api/feel" method="post">
 					<div class="form-group label-floating">
 						<label class="emoji">
@@ -27,10 +31,10 @@
 					</div>
 					<div class="form-group label-floating">
 						<label for="feel" class="control-label">Tell me more...</label>
-						<textarea class="form-control" rows="3" name="feel" required data-error="Write your message"></textarea>
+						<textarea class="form-control" rows="5" name="feel" required data-error="Write your message"></textarea>
 						<div class="help-block with-errors"></div>
                     </div>
-					<input type="submit" value="Sent">
+					<input type="submit" class="btn btn-info sent" value="Sent">
 				</form>
 			</div>
 		</div>
