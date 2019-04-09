@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head}}
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3" style="text-align:center;margin-bottom:48px">
+				<h1>Welcome to Be Happy Project {{emoji}}</h1>
+				<hr />
+				<div style="background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
+					<form action="/api/feel" method="post">
+						<h4>How did you feel today<h4/>
+						<input type="date" name="date" id=""><br />
+						<input type="text" name="feel" placeholder="Tell me.." id=""><br />
+						<input type="emoji" name="emoji" placeholder="emoji" id=""><br />
+						<input type="submit" value="Register">
+					</form>
+				</div>
+				<br/>
+				<div style="background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
+					<canvas id="myChart"></canvas>
+					<!-- Start Js -->
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+					<script>
+						let ctx = document.querySelector('#myChart').getContext('2d');
+
+						let myPieChart = new Chart(ctx,{
+							type: 'pie',
+							data: {
+								datasets: [{
+									label: '# de votes',
+									data: [{{ smiley }}, {{neutal}}, {{ bad }}],
+									backgroundColor: [
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(255, 206, 86, 0.2)'
+										],
+									borderColor: [
+										'rgba(255,99,132,1)',
+										'rgba(54, 162, 235, 1)',
+										'rgba(255, 206, 86, 1)'
+									],
+									borderWidth: 1
+								}],
+
+								// These labels appear in the legend and in the tooltips when hovering different arcs
+								labels: [
+									'Red',
+									'Yellow',
+									'Blue'
+								]
+							},
+							options: {}
+						});
+
+
+						
+
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+{{>resources}}
+</body>
+</html>

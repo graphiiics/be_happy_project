@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head}}
+
+<body>
+  {{>menu}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 title" >
+        <h1>CHARTS</h1>
+        <hr />
+        <div class="box col-md-2">
+          <nav>
+            <ul>
+              <li><a href="/charts/january">january</a></li>
+              <li><a href="/charts/february">february</a></li>
+              <li><a href="/charts/march">march</a></li>
+              <li><a href="/charts/april">april</a></li>
+              <li><a href="/charts/may">may</a></li>
+              <li><a href="/charts/june">june</a></li>
+              <li><a href="/charts/july">july</a></li>
+              <li><a href="/charts/august">august</a></li>
+              <li><a href="/charts/september">september</a></li>
+              <li><a href="/charts/octuber">octuber</a></li>
+              <li><a href="/charts/november">november</a></li>
+              <li><a href="/charts/december">december</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="box col-md-9 col-md-offset-1">
+					<canvas id="myChart"></canvas>
+					<!-- Start Js -->
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+					<script>
+						let ctx = document.querySelector('#myChart').getContext('2d');
+
+						let myPieChart = new Chart(ctx,{
+							type: 'pie',
+							data: {
+								datasets: [{
+									label: '# de votes',
+									data: [{{ data.smiley }}, {{ data.neutral_face}}, {{ data.disappointed }}],
+									backgroundColor: [
+										'rgba(204, 204, 0, 0.9)',
+										'rgba(204, 102, 0, 0.9)',
+										'rgba(51, 153, 153, 0.9)'
+										],
+									borderColor: [
+										'rgba(153, 153, 0, 1)',
+										'rgba(153, 51, 0, 1)',
+										'rgba(0, 102, 102, 1)'
+									],
+									borderWidth: 1
+								}],
+
+								// These labels appear in the legend and in the tooltips when hovering different arcs
+								labels: [
+									'Happy',
+									'Neutral',
+									'Not good actually'
+								]
+							},
+							options: {}
+						});
+
+
+						
+
+					</script>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{>resources}}
+</body>
+</html>

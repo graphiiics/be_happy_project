@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head}}
+
+<body>
+{{>menu}}
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1" style="text-align:center;margin-bottom:48px">
+			<h1>RECORDS</h1>
+			<hr />
+			<div class="box col-md-2">
+          <nav>
+            <ul>
+              <li><a href="/records/january">january</a></li>
+              <li><a href="/records/february">february</a></li>
+              <li><a href="/records/march">march</a></li>
+              <li><a href="/records/april">april</a></li>
+              <li><a href="/records/may">may</a></li>
+              <li><a href="/records/june">june</a></li>
+              <li><a href="/records/july">july</a></li>
+              <li><a href="/records/august">august</a></li>
+              <li><a href="/records/september">september</a></li>
+              <li><a href="/records/octuber">octuber</a></li>
+              <li><a href="/records/november">november</a></li>
+              <li><a href="/records/december">december</a></li>
+              
+            </ul>
+          </nav>
+      </div>
+        <div class="box col-md-9 col-md-offset-1">
+          <table class="table records">
+            <thead>
+              <tr>
+                <th scope="col" class="date">Date</th>
+                <th scope="col" class="emoji">Feeling</th>
+                <th scope="col" class="comment">Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#data}}
+              <tr>
+                <td class="date">{{date}}</td>
+                <td class="emoji">{{emoji}}</td>
+                <td class="comment">{{feel}}</td>
+              </tr>
+              {{/data}}
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+</div>
+{{>resources}}
+</body>
+</html>
